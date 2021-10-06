@@ -47,6 +47,7 @@ resource "kubernetes_deployment" "deployment" {
         container {
           image = var.image
           name  = var.name
+          args  = var.args
 
           dynamic "volume_mount" {
             for_each = var.extra_volume_mounts

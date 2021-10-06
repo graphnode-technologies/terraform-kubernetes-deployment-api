@@ -11,6 +11,10 @@ variable "image" {
 
 }
 
+variable "args" {
+  default = ""
+}
+
 variable "environment" {
   default = "development"
 }
