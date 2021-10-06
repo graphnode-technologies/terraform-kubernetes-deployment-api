@@ -12,7 +12,7 @@ variable "image" {
 }
 
 variable "args" {
-  default = ""
+  default = []
 }
 
 variable "environment" {
