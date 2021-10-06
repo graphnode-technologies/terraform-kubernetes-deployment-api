@@ -101,6 +101,7 @@ resource "kubernetes_deployment" "deployment" {
 }
 
 resource "kubernetes_horizontal_pod_autoscaler" "this" {
+  count = var.max_replicas > var.replicas ? 1 : 0
   metadata {
     name      = "${var.name}-autoscaler"
     namespace = var.namespace
@@ -111,7 +112,7 @@ resource "kubernetes_horizontal_pod_autoscaler" "this" {
   }
 
   spec {
-    max_replicas = var.max_replicas > var.replicas ? var.max_replicas : var.replicas
+    max_replicas = var.max_replicas
     min_replicas = var.replicas
 
     scale_target_ref {
