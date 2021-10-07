@@ -13,6 +13,8 @@ resource "kubernetes_deployment" "deployment" {
   }
 
   spec {
+    replicas = var.replicas
+
     selector {
       match_labels = {
         app         = var.name
