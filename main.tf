@@ -175,10 +175,10 @@ resource "kubernetes_ingress" "ingress" {
   metadata {
     name      = "${var.name}-ingress"
     namespace = var.namespace
-    annotations = {
+    annotations = merge({
       "kubernetes.io/ingress.class"    = "nginx"
       "cert-manager.io/cluster-issuer" = "letsencrypt-prod"
-    }
+    }, var.extra_ingress_annotations)
   }
 
   spec {

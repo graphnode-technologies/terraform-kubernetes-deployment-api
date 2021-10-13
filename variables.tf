@@ -32,6 +32,10 @@ variable "extra_annotations" {
   default = {}
 }
 
+variable "extra_ingress_annotations" {
+  default = {}
+}
+
 variable "extra_volume_mounts" {
   default = {}
 
