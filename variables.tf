@@ -135,3 +135,8 @@ variable "create_ingress" {
   type    = bool
   default = true
 }
+
+variable "startup_failure_threshold" {
+  type    = number
+  default = 30
+}

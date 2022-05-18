@@ -96,6 +96,19 @@ resource "kubernetes_deployment" "deployment" {
               period_seconds        = liveness_probe.value.period_seconds
             }
           }
+          dynamic "startup_probe" {
+            for_each = var.enable_liveness ? [var.liveness_delay] : []
+            content {
+              http_get {
+                path = var.health_check.path
+                port = var.health_check.port
+              }
+
+              initial_delay_seconds = startup_probe.value.initial_delay_seconds
+              period_seconds        = startup_probe.value.period_seconds
+              failure_threshold     = var.startup_failure_threshold
+            }
+          }
         }
       }
     }
